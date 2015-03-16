@@ -3,7 +3,7 @@
 Plugin Name: Tracks2Map
 Plugin URI: http://www.diewanderer.it/tracks2map/
 Description:  Collect GPX track points into one map
-Version: 1.0
+Version: 1.1
 Author: Die Wanderer
 Author URI: http://www.diewanderer.it/
 License: This Plugin by default does not display a credit link. Please consider inserting a dofollow link to www.diewanderer.it or to wwww.diewanderer.it/tracks2map/ on your website, or activate our credit link below the map by writing "yes", without quotation marks, in this field.

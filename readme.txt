@@ -3,8 +3,8 @@ Tags: gpx, map, track, tracks, gpxviewer, gps, googlemap, maps, google maps, gps
 Contributors: dimizu
 Donate link: http://www.diewanderer.it/tracks2map/
 Requires at least: 3.0
-Tested up to: 3.3.2
-Stable tag: 1.0
+Tested up to: 4.1.1
+Stable tag: 1.1
 
 Stellt alle in deinem Blog genutzen GPX Dateien übersichtlich auf einer Google Map Karte dar. 
 
