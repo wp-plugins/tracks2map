@@ -204,6 +204,15 @@ class gr80_tracks2map
 		// $post_query = get_site_option('t2m_post_query', 'post_type=post&posts_per_page=-1');
 
 		$post_query = get_site_option( 't2m_post_query', "$wp_query = new WP_Query( array('paged'=> get_query_var('paged') ? get_query_var('paged') : 1,'post_type'=> 'post','post_status'=> 'publish','posts_per_page'=> -1) );" );
+
+// global $wp_query, $wp_the_query;
+
+// $wp_query = new WP_Query( array(
+//     'paged'             => get_query_var('paged') ? get_query_var('paged') : 1,
+//     'post_type'         => 'post',
+//     'post_status'       => 'publish',
+//     'posts_per_page'    => -1
+// ) );
 		
 		$atts = array();
 		$posts = get_posts($post_query);
