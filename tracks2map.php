@@ -30,29 +30,29 @@ class gr80_tracks2map
 
 	// Original Snippet
 
-	// static function admin_menu()
-	// {
-	// 	add_menu_page('Tracks2Map Configuration', 'Tracks2Map', 'manage_options', 'tracks2map', array(__CLASS__, 'options'));
-	// }
+	static function admin_menu()
+	{
+		add_menu_page('Tracks2Map Configuration', 'Tracks2Map', 'manage_options', 'tracks2map', array(__CLASS__, 'options'));
+	}
 
 	// grc
 
-	static function admin_menu() {
+	// static function admin_menu() {
 
-		$debug = false;
+	// 	$debug = false;
 		
-		{
-			if ( $debug == true ) //run the original code
-			{
-				add_menu_page('Tracks2Map Configuration', 'Tracks2Map', 'manage_options', 'tracks2map', array(__CLASS__, 'options'));
-			}
+	// 	{
+	// 		if ( $debug == true ) //run the original code
+	// 		{
+	// 			add_menu_page('Tracks2Map Configuration', 'Tracks2Map', 'manage_options', 'tracks2map', array(__CLASS__, 'options'));
+	// 		}
 
-			else //run the debug code
-			{
-				add_menu_page('grc-Tracks2Map Configuration', 'grc-Tracks2Map', 'manage_options', 'tracks2map', array(__CLASS__, 'options'));
-			}
-		}
-	}
+	// 		else //run the debug code
+	// 		{
+	// 			add_menu_page('grc-Tracks2Map Configuration', 'grc-Tracks2Map', 'manage_options', 'tracks2map', array(__CLASS__, 'options'));
+	// 		}
+	// 	}
+	// }
 	
 	static function upload_mimes($mimes = array())
 	{
@@ -95,12 +95,12 @@ class gr80_tracks2map
 						<td>
 							<!-- Original string -->
 
-							<!-- <input type="text" name="t2m_post_query" id="" value="<?php //echo get_site_option('t2m_post_query', 'post_type=post&posts_per_page=-1') ?>" /> -->
+							<input type="text" name="t2m_post_query" id="" value="<?php echo get_site_option('t2m_post_query', 'post_type=post&posts_per_page=-1') ?>" />
 
 							
 							<!-- Implemented new WP_Query https://codex.wordpress.org/Class_Reference/WP_Query -->
 
-							<input type="text" name="t2m_post_query" id="" value="<?php echo get_site_option( 't2m_post_query', "$wp_query = new WP_Query( array('paged'=> get_query_var('paged') ? get_query_var('paged') : 1,'post_type'=> 'post','post_status'=> 'publish','posts_per_page'=> -1) );" ) ?>" />
+							<!-- <input type="text" name="t2m_post_query" id="" value="<?php //echo get_site_option( 't2m_post_query', "$wp_query = new WP_Query( array('paged'=> get_query_var('paged') ? get_query_var('paged') : 1,'post_type'=> 'post','post_status'=> 'publish','posts_per_page'=> -1) );" ) ?>" /> -->
 
 <!-- global $wp_query, $wp_the_query; -->
 
@@ -201,9 +201,9 @@ class gr80_tracks2map
 	
 	static function search_and_convert()
 	{
-		// $post_query = get_site_option('t2m_post_query', 'post_type=post&posts_per_page=-1');
+		$post_query = get_site_option('t2m_post_query', 'post_type=post&posts_per_page=-1');
 
-		$post_query = get_site_option( 't2m_post_query', "$wp_query = new WP_Query( array('paged'=> get_query_var('paged') ? get_query_var('paged') : 1,'post_type'=> 'post','post_status'=> 'publish','posts_per_page'=> -1) );" );
+		// $post_query = get_site_option( 't2m_post_query', "$wp_query = new WP_Query( array('paged'=> get_query_var('paged') ? get_query_var('paged') : 1,'post_type'=> 'post','post_status'=> 'publish','posts_per_page'=> -1) );" );
 
 // global $wp_query, $wp_the_query;
 
