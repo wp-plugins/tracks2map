@@ -122,7 +122,7 @@ function HomeControl(controlDiv, map) {
 	controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
 	controlText.style.fontSize = '11px';
 
-	controlText.innerHTML = '<b>resize map</b>';
+	controlText.innerHTML = '<b>Full Screen</b>';
 	controlUI.appendChild(controlText);
 
 	// Setup the click event listeners: simply set the map to Chicago.
@@ -134,11 +134,20 @@ function HomeControl(controlDiv, map) {
 function initialize() {
 
 	map = new google.maps.Map(document.getElementById('map_canvas'), {
-			zoom : 8,
+			// zoom : 8,
+			zoom : 5,
 			mapTypeControl : true,
 			mapTypeControlOptions : {
 				style : google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-				mapTypeIds : [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE, google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.TERRAIN, 'osmmapnik', 'cyclekarte', 'wanderwegekarte', 'wanderwegesat']
+				mapTypeIds : [google.maps.MapTypeId.ROADMAP, 
+							  google.maps.MapTypeId.SATELLITE, 
+							  google.maps.MapTypeId.HYBRID, 
+							  google.maps.MapTypeId.TERRAIN, 
+							  'osmmapnik', 
+							  // 'cyclekarte', 
+							  // 'wanderwegekarte', 
+							  // 'wanderwegesat'
+							 ]
 			},
 			panControl : true,
 			zoomControl : true,
@@ -163,7 +172,6 @@ function initialize() {
 	map.mapTypes.set('osmmapnik', osmmapnik);
 
 
-
 	cyclekarte = new google.maps.ImageMapType({
 			getTileUrl : function (ll, z) {
 				var X = ll.x % (1 << z);
@@ -176,6 +184,7 @@ function initialize() {
 			alt : "Open Streetmap Cycle"
 		});
 	map.mapTypes.set('cyclekarte', cyclekarte);
+
 
 	wanderwegekarte = new google.maps.ImageMapType({
 			getTileUrl : function (ll, z) {
@@ -198,6 +207,7 @@ function initialize() {
 			alt : "Wanderwege Südtirol Karte"
 		});
 	map.mapTypes.set('wanderwegekarte', wanderwegekarte);
+
 
 	wanderwegesat = new google.maps.ImageMapType({
 			getTileUrl : function (ll, z) {
@@ -293,7 +303,13 @@ function initialize() {
 
 	function markerClick() {
 		var staticMapN = staticMap.replace('%%', str_path[this.idx]);
-		var viewLink = '<p><a href="' + poly[this.idx].url + '">' + poly[this.idx].title + '</a> - <a href="' + poly[this.idx].atturl + '">Download</a><br/><a href="#" onclick="return zoomhere(' + this.idx + ');">Zoom</a></p>';
+
+		// original string
+		// var viewLink = '<p><a href="' + poly[this.idx].url + '">' + poly[this.idx].title + '</a> - <a href="' + poly[this.idx].atturl + '">Download</a><br/><a href="#" onclick="return zoomhere(' + this.idx + ');">Zoom</a></p>';
+
+		// grc removed download and zoom buttons because they don't work with the latest js bubble marker implementation
+		var viewLink = '<p><a href="' + poly[this.idx].url + '">' + poly[this.idx].title + '</a></p>';
+
 		var content = staticMapN.toString() + viewLink;
 		infoBubble.updateTab(0, 'Details', content);
 		infoBubble.open(map, this);
