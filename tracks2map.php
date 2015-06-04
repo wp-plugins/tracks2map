@@ -372,6 +372,12 @@ class gr80_tracks2map
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'infoBubble.js' ?>"></script>
 		<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'Tracks2Map.js' ?>"></script>
+
+		<!-- grc added 2 scripts from online map:  http://www.diewanderer.it/wanderungen-suedtirol-karte/ -->
+		<!-- this 2 scripts allow google maps Markers Clasterization, grouping icons in bubbles -->
+
+		<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'markerclusterer/markerclusterer.js' ?>"></script>
+		<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'markerclusterer/oms.min.js' ?>"></script>
 		<?php
 	}
 	
