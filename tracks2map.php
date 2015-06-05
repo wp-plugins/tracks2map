@@ -1,14 +1,33 @@
 <?php
-/*
-Plugin Name: Tracks2Map
-Plugin URI: http://www.diewanderer.it/tracks2map/
-Description:  Collect GPX track points into one map
-Version: 1.1
-Author: Die Wanderer
-Author URI: http://www.diewanderer.it/
-License: This Plugin by default does not display a credit link. Please consider inserting a dofollow link to www.diewanderer.it or to www.diewanderer.it/tracks2map/ on your website, or activate our credit link below the map by writing "yes", without quotation marks, in this field.
+/**
+ * Plugin Name: Tracks2Map
+ * Description: Collect GPX track points into one map.
+ * Version: 1.2
+ * Author: Giorgio25b from the original version of Die Wanderer
+ * Author URI: http://giorgioriccardi.com
+ * License: GPL2
+ */
 
+/*  Copyright 2015  WorkingDesign  (email : me@giorgioriccardi.com)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as 
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+/* 
+ * Creates a custom post type for ELC publications
+ * Also sets custom taxonomies
+ */
 
 class gr80_tracks2map
 {
