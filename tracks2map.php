@@ -4,7 +4,7 @@
  * Description: Collect GPX track points into one map.
  * Version: 1.2
  * Author: Giorgio25b from the original version of Die Wanderer
- * Author URI: http://giorgioriccardi.com
+ * Author URI: https://github.com/giorgioriccardi/tracks2map
  * License: GPL2
  */
 
