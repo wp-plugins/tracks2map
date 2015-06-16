@@ -1,14 +1,33 @@
 <?php
-/*
-Plugin Name: Tracks2Map
-Plugin URI: http://www.diewanderer.it/tracks2map/
-Description:  Collect GPX track points into one map
-Version: 1.1
-Author: Die Wanderer
-Author URI: http://www.diewanderer.it/
-License: This Plugin by default does not display a credit link. Please consider inserting a dofollow link to www.diewanderer.it or to wwww.diewanderer.it/tracks2map/ on your website, or activate our credit link below the map by writing "yes", without quotation marks, in this field.
+/**
+ * Plugin Name: Tracks2Map
+ * Description: Collect GPX track points into one map.
+ * Version: 1.2
+ * Author: Giorgio25b from the original version of Die Wanderer
+ * Author URI: https://github.com/giorgioriccardi/tracks2map
+ * License: GPL2
+ */
 
+/*  Copyright 2015  WorkingDesign  (email : me@giorgioriccardi.com)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as 
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+/* 
+ * Creates a custom post type for ELC publications
+ * Also sets custom taxonomies
+ */
 
 class gr80_tracks2map
 {
@@ -27,11 +46,32 @@ class gr80_tracks2map
 		
 		add_shortcode('tracks2map', array(__CLASS__, 'display'));
 	}
-	
+
+	// Original Snippet
+
 	static function admin_menu()
 	{
 		add_menu_page('Tracks2Map Configuration', 'Tracks2Map', 'manage_options', 'tracks2map', array(__CLASS__, 'options'));
 	}
+
+	// grc
+
+	// static function admin_menu() {
+
+	// 	$debug = false;
+		
+	// 	{
+	// 		if ( $debug == true ) //run the original code
+	// 		{
+	// 			add_menu_page('Tracks2Map Configuration', 'Tracks2Map', 'manage_options', 'tracks2map', array(__CLASS__, 'options'));
+	// 		}
+
+	// 		else //run the debug code
+	// 		{
+	// 			add_menu_page('grc-Tracks2Map Configuration', 'grc-Tracks2Map', 'manage_options', 'tracks2map', array(__CLASS__, 'options'));
+	// 		}
+	// 	}
+	// }
 	
 	static function upload_mimes($mimes = array())
 	{
@@ -72,7 +112,24 @@ class gr80_tracks2map
 							Post Query String (Advanced)
 						</th>
 						<td>
+							<!-- Original string -->
+
 							<input type="text" name="t2m_post_query" id="" value="<?php echo get_site_option('t2m_post_query', 'post_type=post&posts_per_page=-1') ?>" />
+
+							
+							<!-- Implemented new WP_Query https://codex.wordpress.org/Class_Reference/WP_Query -->
+
+							<!-- <input type="text" name="t2m_post_query" id="" value="<?php //echo get_site_option( 't2m_post_query', "$wp_query = new WP_Query( array('paged'=> get_query_var('paged') ? get_query_var('paged') : 1,'post_type'=> 'post','post_status'=> 'publish','posts_per_page'=> -1) );" ) ?>" /> -->
+
+<!-- global $wp_query, $wp_the_query; -->
+
+<!-- $wp_query = new WP_Query( array(
+    'paged'             => get_query_var('paged') ? get_query_var('paged') : 1,
+    'post_type'         => 'post',
+    'post_status'       => 'publish',
+    'posts_per_page'    => -1
+) ); -->
+
 						</td>
 					</tr>
 
@@ -128,7 +185,7 @@ class gr80_tracks2map
 							Credit link
 						</th>
 						<td>
-							<input type="text" name="t2m_creditlink" id="" value="<?php echo get_site_option('t2m_creditlink', 'no') ?>" /> This Plugin by default does not display a credit link. Please consider inserting a dofollow link to www.diewanderer.it or to wwww.diewanderer.it/tracks2map/ on your website, or activate our credit link below the map by writing "yes", without quotation marks, in this field.
+							<input type="text" name="t2m_creditlink" id="" value="<?php echo get_site_option('t2m_creditlink', 'no') ?>" /> This Plugin by default does not display a credit link. Please consider inserting a dofollow link to www.diewanderer.it or to www.diewanderer.it/tracks2map/ on your website, or activate our credit link below the map by writing "yes", without quotation marks, in this field.
 						</td>
 					</tr>
                     
@@ -164,6 +221,17 @@ class gr80_tracks2map
 	static function search_and_convert()
 	{
 		$post_query = get_site_option('t2m_post_query', 'post_type=post&posts_per_page=-1');
+
+		// $post_query = get_site_option( 't2m_post_query', "$wp_query = new WP_Query( array('paged'=> get_query_var('paged') ? get_query_var('paged') : 1,'post_type'=> 'post','post_status'=> 'publish','posts_per_page'=> -1) );" );
+
+// global $wp_query, $wp_the_query;
+
+// $wp_query = new WP_Query( array(
+//     'paged'             => get_query_var('paged') ? get_query_var('paged') : 1,
+//     'post_type'         => 'post',
+//     'post_status'       => 'publish',
+//     'posts_per_page'    => -1
+// ) );
 		
 		$atts = array();
 		$posts = get_posts($post_query);
@@ -323,6 +391,12 @@ class gr80_tracks2map
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 		<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'infoBubble.js' ?>"></script>
 		<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'Tracks2Map.js' ?>"></script>
+
+		<!-- grc added 2 scripts from online map:  http://www.diewanderer.it/wanderungen-suedtirol-karte/ -->
+		<!-- this 2 scripts allow google maps Markers Clasterization, grouping icons in bubbles -->
+
+		<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'markerclusterer/markerclusterer.js' ?>"></script>
+		<script type="text/javascript" src="<?php echo plugin_dir_url(__FILE__).'markerclusterer/oms.min.js' ?>"></script>
 		<?php
 	}
 	
